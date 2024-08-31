@@ -69,12 +69,9 @@ function Spreadsheet() {
           },
         });
         const data = await response.json();
-        console.log('Spreadsheet data:', data);
-
         // Ensure the data is valid
         if (data) {
           setCells(data);
-          console.log(cells);
         } else {
           // Set to default if data is invalid or doesn't match expected dimensions
           setCells(Array.from({ length: rowLength }, () => Array(columnLength).fill('')));
@@ -93,7 +90,6 @@ function Spreadsheet() {
 
       wsClient.onopen = () => {
         setWs(wsClient);
-        console.log('WebSocket connected');
       };
 
       wsClient.onmessage = (event) => {
@@ -112,7 +108,6 @@ function Spreadsheet() {
       };
 
       wsClient.onclose = (event) => {
-        console.log('WebSocket disconnected. Reconnecting...', event.reason);
         setTimeout(connectWebSocket, 100); // Attempt to reconnect after 1 second
       };
 
