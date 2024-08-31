@@ -52,7 +52,6 @@ const authUser = async (req, res, next) => {
     next();
   } catch (error) {
     res.status(401).json({ error: 'Not authorized to access this resource' });
-    console.log(error);
   }
 };
 
@@ -153,7 +152,6 @@ app.post('/api/add-collaborator', async (req, res) => {
   } catch (error) {
     await session.abortTransaction();
     session.endSession();
-    console.log(error);
     res.status(500).json({ error: 'Failed to add collaborator' });
   }
 });
