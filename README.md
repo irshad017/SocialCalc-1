@@ -1,5 +1,3 @@
-Here's an updated README file for your SocialCalc repository:
-
 ---
 
 # SocialCalc
