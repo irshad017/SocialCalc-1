@@ -23,11 +23,6 @@
         {
             "src":"/spreadsheet/:id",
             "dest":"/"
-        },
-
-        {
-            "src":"/dashboard",
-            "dest":"/"
         }
     ]
 }
