@@ -241,9 +241,17 @@ function Spreadsheet() {
         <div>
           <label>
             Font Size:
-            <button onClick={decreaseFontSize} className="px-2 py-1 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">-</button>
+            <button onClick={decreaseFontSize} className="ml-2 p-2 bg-gray-300 text-gray-700 rounded-full hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4"></path>
+              </svg>
+            </button>
             <span className="mx-2">{fontSize}px</span>
-            <button onClick={increaseFontSize} className="px-2 py-1 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">+</button>
+            <button onClick={increaseFontSize} className="p-2 bg-gray-300 text-gray-700 rounded-full hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </button>
           </label>
         </div>
         <div>
