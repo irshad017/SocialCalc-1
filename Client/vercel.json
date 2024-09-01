@@ -5,15 +5,28 @@
             "dest":"/"
         },
         {
-            "src":"/gallery",
+            "src":"/register",
             "dest":"/"
         },
         {
-            "src":"/about",
+            "src":"/login",
             "dest":"/"
         },
         {
-            "src":"/notices",
+            "src":"/dashboard",
+            "dest":"/"
+        },
+        {
+            "src":"/spreadsheet",
+            "dest":"/"
+        },
+        {
+            "src":"/spreadsheet/:id",
+            "dest":"/"
+        },
+
+        {
+            "src":"/dashboard",
             "dest":"/"
         }
     ]
