@@ -14,7 +14,7 @@
         },
         {
             "src":"/dashboard",
-            "dest":"/"
+            "dest":"/dashobard"
         },
         {
             "src":"/spreadsheet",
