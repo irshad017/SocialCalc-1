@@ -63,7 +63,7 @@ function Spreadsheet() {
     const fetchSpreadsheet = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await fetch(`http://localhost:5000/api/spreadsheet/${id}`, {
+        const response = await fetch(`http://13.233.152.107:5000/api/spreadsheet/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -88,7 +88,8 @@ function Spreadsheet() {
     fetchSpreadsheet();
 
     const connectWebSocket = () => {
-      const wsClient = new WebSocket(`ws://localhost:5000/?spreadsheetId=${id}&clientId=${clientId.current}`);
+      const wsUrl = `ws://13.233.152.107:5000/?spreadsheetId=${id}&clientId=${clientId.current}`;
+      const wsClient = new WebSocket(wsUrl);
 
       wsClient.onopen = () => {
         setWs(wsClient);
@@ -272,7 +273,7 @@ function Spreadsheet() {
         </Grid>
       </div>
 
-      <style jsx>{`
+      <style >{`
         .grid {
           display: grid;
         }

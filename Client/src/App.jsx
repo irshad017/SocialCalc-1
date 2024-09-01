@@ -4,8 +4,6 @@ import Spreadsheet from './components/Spreadsheet';
 import UserRegistration from './components/Auth/Register';
 import Login from './components/Auth/Login';
 import Dashboard from './components/Dashboard/Dashboard';
-import AddCollaboratorForm from './components/RealTimeCollaboration/addCollaborator';
-import Header from './components/Common/Header';
 import Home from './components/Common/Home';
 
 function App() {
