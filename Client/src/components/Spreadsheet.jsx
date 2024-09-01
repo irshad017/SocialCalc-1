@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 import { FixedSizeGrid as Grid } from 'react-window';
 import AddCollaboratorForm from './RealTimeCollaboration/addCollaborator';
+import Header from './Common/Header';
 
 const rowLength = 999;
 const columnLength = 27;
@@ -10,7 +11,7 @@ const columnLength = 27;
 const getColumnLabel = (index) => String.fromCharCode(65 + index); // Convert 0 to 'A', 1 to 'B', etc.
 
 const Cell = memo(({ rowIndex, columnIndex, style, data }) => {
-  const { cells, selectedCell, selectCell, handleBlur, handleKeyDown, cellRefs } = data;
+  const { cells, selectedCell, selectCell, handleBlur, handleKeyDown, cellRefs, fontSize } = data;
   const cell = cells[rowIndex][columnIndex];
 
   const isHeaderRow = rowIndex === 0;
@@ -28,7 +29,7 @@ const Cell = memo(({ rowIndex, columnIndex, style, data }) => {
         justifyContent: 'center',
         boxSizing: 'border-box',
         fontFamily: 'Arial, sans-serif',
-        fontSize: '12px',
+        fontSize: isHeaderRow || isHeaderColumn ? 14 : fontSize,
         overflow: 'hidden',
         whiteSpace: 'pre-wrap',
         textAlign: 'center',
@@ -53,6 +54,7 @@ function Spreadsheet() {
   const [cellHeight, setCellHeight] = useState(22); // Default height
   const [cellWidth, setCellWidth] = useState(90); // Default width
   const [gridWidth, setGridWidth] = useState(1240); // Default grid width
+  const [fontSize, setFontSize] = useState(12); // Default font size
   const containerRef = useRef(null);
   const cellRefs = useRef({});
   const clientId = useRef(`client-${Math.random().toString(36).substr(2, 9)}`);
@@ -182,47 +184,70 @@ function Spreadsheet() {
     }
   }, [selectCell]);
 
+  const increaseFontSize = () => {
+    setFontSize((prevSize) => Math.min(prevSize + 1, 32)); // Max font size 32
+  };
+
+  const decreaseFontSize = () => {
+    setFontSize((prevSize) => Math.max(prevSize - 1, 8)); // Min font size 8
+  };
 
   if (!cells) {
     return <div>Loading....</div>;
   }
-  if(!ws) {
+  if (!ws) {
     return <div>Connecting to server...</div>;
   }
 
   return (
     <div ref={containerRef} style={{ width: '100%', overflow: 'auto' }}>
-      <h1 className='font-bold text-2xl'>Spreadsheet ID: {id}</h1>
+      <Header />
+      <div className='flex items-center justify-center p-2'>
+        <h1 className='font-bold text-2xl'>Spreadsheet ID: {id}</h1>
+      </div>
 
-      <div style={{ marginBottom: '10px' }}>
-        <label>
-          Cell Height:
-          <input
-            type="range"
-            min="10"
-            max="100"
-            step="1"
-            value={cellHeight}
-            onChange={(e) => setCellHeight(parseInt(e.target.value, 10))}
-            style={{ margin: '0 10px', width: '200px' }}
-          />
-          {cellHeight}px
-        </label>
-        <br />
-        <label>
-          Cell Width:
-          <input
-            type="range"
-            min="50"
-            max="200"
-            step="1"
-            value={cellWidth}
-            onChange={(e) => setCellWidth(parseInt(e.target.value, 10))}
-            style={{ margin: '0 10px', width: '200px' }}
-          />
-          {cellWidth}px
-        </label>
-        <AddCollaboratorForm spreadsheetId={id}/>
+      <div className='mb-2 flex justify-between px-3'>
+        <div>
+          <label>
+            Cell Height:
+            <input
+              type="range"
+              min="10"
+              max="100"
+              step="1"
+              value={cellHeight}
+              onChange={(e) => setCellHeight(parseInt(e.target.value, 10))}
+              style={{ margin: '0 10px', width: '200px' }}
+            />
+            {cellHeight}px
+          </label>
+          <br />
+          <label>
+            Cell Width:
+            <input
+              type="range"
+              min="50"
+              max="200"
+              step="1"
+              value={cellWidth}
+              onChange={(e) => setCellWidth(parseInt(e.target.value, 10))}
+              style={{ margin: '0 10px', width: '200px' }}
+            />
+            {cellWidth}px
+          </label>
+          <br />
+        </div>
+        <div>
+          <label>
+            Font Size:
+            <button onClick={decreaseFontSize} className="px-2 py-1 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">-</button>
+            <span className="mx-2">{fontSize}px</span>
+            <button onClick={increaseFontSize} className="px-2 py-1 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">+</button>
+          </label>
+        </div>
+        <div>
+          <AddCollaboratorForm spreadsheetId={id} />
+        </div>
       </div>
 
       <div style={{ width: '100%', overflow: 'auto' }}>
@@ -240,6 +265,7 @@ function Spreadsheet() {
             handleBlur,
             handleKeyDown,
             cellRefs,
+            fontSize,
           }}
         >
           {Cell}
