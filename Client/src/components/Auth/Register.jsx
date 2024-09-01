@@ -10,7 +10,7 @@ const UserRegistration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://13.233.152.107:5000/api/register', { username, password });
+      const response = await axios.post('http://localhost:5000/api/register', { username, password });
       if (response.status === 200) {
         toast.success('Registration successful');
         navigate('/login');

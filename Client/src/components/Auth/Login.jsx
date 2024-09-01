@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://13.233.152.107:5000/api/login', { username, password });
+      const response = await axios.post('http://localhost:5000/api/login', { username, password });
       if (response.status === 200) {
         localStorage.setItem('token', `Bearer ${response.data.token}`);
         const decodeToken = jwtDecode(response.data.token);

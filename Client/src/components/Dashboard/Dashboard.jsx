@@ -15,7 +15,7 @@ const Dashboard = () => {
     const fetchUserDetails = async () => {
       const userId = localStorage.getItem('userId');
       try {
-        const userResponse = await axios.get(`http://13.233.152.107:5000/api/user/${userId}`);
+        const userResponse = await axios.get(`http://localhost:5000/api/user/${userId}`);
         setUser(userResponse.data);
         setSpreadsheets(userResponse.data.spreadsheet);
         setLoading(false);
@@ -42,7 +42,7 @@ const Dashboard = () => {
     const userId = localStorage.getItem('userId');
     try {
       console.log('Creating spreadsheet with name:', newSpreadsheetName, 'and owner:', userId);
-      const response = await axios.post('http://13.233.152.107:5000/api/spreadsheet', {
+      const response = await axios.post('http://localhost:5000/api/spreadsheet', {
         name: newSpreadsheetName,
         owner: userId
       });

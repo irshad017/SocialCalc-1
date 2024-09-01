@@ -9,7 +9,7 @@ const AddCollaboratorForm = ({ spreadsheetId }) => {
     e.preventDefault();
     if (collaboratorUsername.trim()) {
       try {
-        const response = await axios.post('http://13.233.152.107:5000/api/add-collaborator', {
+        const response = await axios.post('http://localhost:5000/api/add-collaborator', {
           spreadsheetId,
           collaboratorUsername,
         });
