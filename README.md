@@ -104,7 +104,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 If you have any questions or want to reach out, you can contact me at:
 
-- **Email:** priyeshchaudhari35@gmail.com
-- **LinkedIn:** [Priyesh Chaudhari](https://www.linkedin.com/in/priyesh-chaudhari/)
-- **GitHub:** [Priyesh1311421](https://github.com/Priyesh1311421)
-- **Twitter:** [@ChaudhariPriyes](https://x.com/ChaudhariPriyes)
+- **Email:** irshadhussain7881@gmail.com
